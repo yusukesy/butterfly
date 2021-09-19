@@ -1,5 +1,5 @@
 import os
-# import random
+import random
 from time import sleep, time
 
 import feedparser
@@ -12,9 +12,7 @@ from client import Config, NoteNews
 
 def check_send():
     feeds_url = ["http://feeds.feedburner.com/youtube/einerd/feed", "http://feeds.feedburner.com/DevAprender"]
-    for feed_url in feeds_url:
-        feed_url = feed_url
-    # feed_url = random.choice(Config.FEED_URLS)
+    feed_url = random.choice(Config.FEED_URLS)
     FEED = feedparser.parse(feed_url)
     entry = FEED.entries[0]
     if db.get_link(feed_url) == None:
