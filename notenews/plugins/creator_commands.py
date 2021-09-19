@@ -1,8 +1,11 @@
 from notenews import Functions
-from pyrogram.types import Message
-from pyrogram import Client, filters
-import heroku3
 from client import Config, NoteNews
+
+from pyrogram.types import Message
+from pyrogram import filters
+
+import heroku3
+
 
 from functools import partial, wraps
 
