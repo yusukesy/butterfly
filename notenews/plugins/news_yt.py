@@ -9,10 +9,12 @@ from apscheduler.schedulers.background import BackgroundScheduler
 from pyrogram.errors import FloodWait
 from client import Config, NoteNews
 
+from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
+
 
 def check_sends():
-    feeds_url = ["http://feeds.feedburner.com/youtube/einerd/feed", "http://feeds.feedburner.com/DevAprender"]
-    feed_url = random.choice(feeds_url)
+    feed_url = "http://feeds.feedburner.com/Kultivi"
+    # feed_url = random.choice(feeds_url)
     print("HEREEEEEE: " + feed_url)
     FEED = feedparser.parse(feed_url)
     entry = FEED.entries[0]
@@ -24,8 +26,13 @@ def check_sends():
 🌐 via {entry.author} | @NoteZV
 ╰• {entry.title}
 """
+        buttons = [
+            [
+                InlineKeyboardButton(text="Assistir ao vídeo", url=entry.link),
+            ]
+        ]
         try:
-            NoteNews.send_photo(-1001165341477, entry.media_thumbnail[0]["url"], caption=message)
+            NoteNews.send_photo(-1001165341477, entry.media_thumbnail[0]["url"], caption=message, reply_markup=InlineKeyboardMarkup(buttons))
             db.update_link(feed_url, entry.id)
         except FloodWait as e:
             print(f"FloodWait: {e.x} segundos")
