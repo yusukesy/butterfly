@@ -1,6 +1,4 @@
-# from pyrogram import Client, filters
 from pyrogram.types import Message
-# from client import NoteMusic
 from typing import Union
 
 
