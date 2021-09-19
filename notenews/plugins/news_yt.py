@@ -12,7 +12,7 @@ from client import Config, NoteNews
 
 def check_sends():
     feeds_url = ["http://feeds.feedburner.com/youtube/einerd/feed", "http://feeds.feedburner.com/DevAprender"]
-    feed_url = random.choice(Config.FEED_URLS)
+    feed_url = random.choice(feeds_url)
     print("HEREEEEEE: " + feed_url)
     FEED = feedparser.parse(feed_url)
     entry = FEED.entries[0]
