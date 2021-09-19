@@ -16,7 +16,6 @@ def check_sends():
     print("HEREEEEEE: " + feed_url)
     FEED = feedparser.parse(feed_url)
     entry = FEED.entries[0]
-    print(entry)
     if db.get_link(feed_url) == None:
         db.update_link(feed_url, "*")
         return
@@ -26,7 +25,7 @@ def check_sends():
 ╰• {entry.title}
 """
         try:
-            NoteNews.send_message(-1001165341477, message)
+            NoteNews.send_photo(-1001165341477, entry.media_thumbnail[0]["url"], caption=message)
             db.update_link(feed_url, entry.id)
         except FloodWait as e:
             print(f"FloodWait: {e.x} segundos")
