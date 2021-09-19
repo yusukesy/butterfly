@@ -21,7 +21,7 @@ def check_send():
         return
     if entry.id != db.get_link(feed_url).link:
         message = f"""
-🌐 via {entry.author} | @NoteZV
+🌐 via **{entry.author}** | @NoteZV
 ╰• {entry.title}
 """
         buttons = [[InlineKeyboardButton(text="Assistir ao vídeo", url=entry.link)]]
