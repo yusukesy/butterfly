@@ -2,7 +2,7 @@ from notenews import Functions
 from pyrogram.types import Message
 from pyrogram import Client, filters
 import heroku3
-from ..client import Config, NoteNews
+from client import Config, NoteNews
 
 from functools import partial, wraps
 
