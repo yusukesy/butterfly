@@ -21,6 +21,7 @@ def check_send():
     entry = FEED.entries[0]
     if db.get_link(feed_url) == None:
         db.update_link(feed_url, "*")
+        return
     if entry.id != db.get_link(feed_url).link:
         message = f"""
 🎮 {entry.title}
