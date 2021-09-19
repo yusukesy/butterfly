@@ -10,12 +10,7 @@ from pyrogram.errors import FloodWait
 from client import Config, NoteNews
 
 
-# if db.get_link(feed_url) == None:
-  # db.update_link(feed_url, "*")
-
 def check_send():
-    # for feed_url in Config.FEED_URLS:
-        # feed_url = feed_url
     feed_url = random.choice(Config.FEED_URLS)
     FEED = feedparser.parse(feed_url)
     entry = FEED.entries[0]
