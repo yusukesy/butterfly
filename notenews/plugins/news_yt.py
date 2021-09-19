@@ -36,6 +36,6 @@ def check_sends():
     else:
         print(f"FEED Verificado: {entry.id}")
 
-scheduler = BackgroundScheduler()
-scheduler.add_job(check_sends, "interval", seconds=5, max_instances=Config.MAX_INSTANCES)
-scheduler.start()
+schedulera = BackgroundScheduler()
+schedulera.add_job(check_sends, "interval", seconds=5, max_instances=Config.MAX_INSTANCES)
+schedulera.start()
