@@ -28,12 +28,7 @@ def check_send():
 ▫️ | {entry.link}
 
 ◾️ | <code>Mantido por:</code> @NoteZV
-""" if not entry.feedburner_origlink else f"""
-🎮 {entry.title}
-▫️ | {entry.feedburner_origlink}
-
-◾️ | <code>Mantido por:</code> @NoteZV
-""" 
+"""
         try:
             NoteNews.send_message(Config.LOG_CHANNEL, message)
             db.update_link(feed_url, entry.id)
