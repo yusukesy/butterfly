@@ -1,13 +1,13 @@
 import os
+import random
+from time import sleep, time
+
 import feedparser
 from .sql import db
-from time import sleep, time
-# from pyrogram import Client, filters
-from pyrogram.errors import FloodWait
 from apscheduler.schedulers.background import BackgroundScheduler
-from client import Config, NoteNews
 
-import random
+from pyrogram.errors import FloodWait
+from client import Config, NoteNews
 
 
 # if db.get_link(feed_url) == None:
