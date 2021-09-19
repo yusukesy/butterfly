@@ -12,7 +12,7 @@ from client import Config, NoteNews
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 
 
-def check_sends():
+def check_send():
     feed_url = random.choice(Config.YT_URLS)
     FEED = feedparser.parse(feed_url)
     entry = FEED.entries[0]
@@ -34,8 +34,8 @@ def check_sends():
         except Exception as e:
             print(e)
     else:
-        print(f"FEED Verificado: {entry.id}")
+        print(f"YT Verificado: {entry.id}")
 
-schedulera = BackgroundScheduler()
-schedulera.add_job(check_sends, "interval", seconds=5, max_instances=Config.MAX_INSTANCES)
-schedulera.start()
+scheduler = BackgroundScheduler()
+scheduler.add_job(check_send, "interval", seconds=Config.CHECK_INTERVAL, max_instances=Config.MAX_INSTANCES)
+scheduler.start()
