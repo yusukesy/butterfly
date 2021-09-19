@@ -10,11 +10,13 @@ from pyrogram.errors import FloodWait
 from client import Config, NoteNews
 
 
-def check_send():
+def check_sends():
     feeds_url = ["http://feeds.feedburner.com/youtube/einerd/feed", "http://feeds.feedburner.com/DevAprender"]
     feed_url = random.choice(Config.FEED_URLS)
+    print("HEREEEEEE: " + feed_url)
     FEED = feedparser.parse(feed_url)
     entry = FEED.entries[0]
+    print(entry)
     if db.get_link(feed_url) == None:
         db.update_link(feed_url, "*")
         return
@@ -24,7 +26,7 @@ def check_send():
 ╰• {entry.title}
 """
         try:
-            NoteNews.send_photo(-1001165341477, entry["media_thumbnail"][0]["url"], caption=message)
+            NoteNews.send_message(-1001165341477, message)
             db.update_link(feed_url, entry.id)
         except FloodWait as e:
             print(f"FloodWait: {e.x} segundos")
@@ -35,5 +37,5 @@ def check_send():
         print(f"FEED Verificado: {entry.id}")
 
 scheduler = BackgroundScheduler()
-scheduler.add_job(check_send, "interval", seconds=5, max_instances=Config.MAX_INSTANCES)
+scheduler.add_job(check_sends, "interval", seconds=5, max_instances=Config.MAX_INSTANCES)
 scheduler.start()
