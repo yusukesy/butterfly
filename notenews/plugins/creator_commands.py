@@ -16,4 +16,5 @@ async def add_feed(_, message: Message):
         app = heroku_conn.apps()[Config.HU_APP]
         heroku_vars = app.config()
         var = heroku_vars["FEED_URLS"]
+        await message.reply("Feed adicionado! Reiniciando...", quote=True)
         heroku_vars["FEED_URLS"] = f"{var} | {Functions.input_str(message)}"
