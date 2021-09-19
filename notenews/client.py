@@ -9,6 +9,7 @@ class Config:
     HU_APP = str(os.environ.get("HU_APP"))
     
     FEED_URLS = list(set(i for i in os.environ.get("FEED_URLS").split(" | ")))
+    YT_URLS = list(set(i for i in os.environ.get("YT_URLS").split(" | ")))
     LOG_CHANNEL = str(os.environ.get("LOG_CHANNEL"))
     CHECK_INTERVAL = int(os.environ.get("CHECK_INTERVAL"))
     MAX_INSTANCES = int(os.environ.get("MAX_INSTANCES"))
