@@ -1,0 +1,32 @@
+{
+  "name": "NoteNews",
+  "description": "NewsBot for Telegram.",
+	"stack": "container",
+  "repository": "https://github.com/ibhabhathane/PhawulaX",
+  "keywords": [
+  "python", 
+  "chatbot", 
+  "telegrambot"
+  ],
+  "website": "https://github.com/ibhabhathane/PhawulaX",
+  "success_url": "https://t.me/tlmusicdownloader_bot",
+  "env": {
+    "API_ID": {
+      "description": "Make a bot at BotFather http://telegram.dog/BotFather and get the token of your bot",
+      "required": true
+},
+    "API_HASH": {
+      "description": "Make a bot at BotFather http://telegram.dog/BotFather and get the token of your bot",
+      "required": true
+},
+    "BOT_TOKEN": {
+      "description": "Make a bot at BotFather http://telegram.dog/BotFather and get the token of your bot",
+      "required": true
+    }
+  }
+  "buildpacks": [
+      {
+          "url": "heroku/python"
+      },
+  ],
+}

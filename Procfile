@@ -1,0 +1,1 @@
+worker: python3 notenews/__main__.py
