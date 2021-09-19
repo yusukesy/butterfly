@@ -5,8 +5,7 @@ from time import sleep, time
 # from pyrogram import Client, filters
 from pyrogram.errors import FloodWait
 from apscheduler.schedulers.background import BackgroundScheduler
-from notenews import NoteNews
-from ..client import Config
+from client import Config, NoteNews
 
 import random
 
