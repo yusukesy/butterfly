@@ -24,7 +24,7 @@ def check_send():
 ╰• {entry.title}
 """
         try:
-            NoteNews.send_photo(-1001165341477, entry.media_thumbnail[0]["url"], caption=message)
+            NoteNews.send_photo(-1001165341477, entry["media_thumbnail"][0]["url"], caption=message)
             db.update_link(feed_url, entry.id)
         except FloodWait as e:
             print(f"FloodWait: {e.x} segundos")
@@ -35,5 +35,5 @@ def check_send():
         print(f"FEED Verificado: {entry.id}")
 
 scheduler = BackgroundScheduler()
-scheduler.add_job(check_send, "interval", seconds=Config.CHECK_INTERVAL, max_instances=Config.MAX_INSTANCES)
+scheduler.add_job(check_send, "interval", seconds=5, max_instances=Config.MAX_INSTANCES)
 scheduler.start()
