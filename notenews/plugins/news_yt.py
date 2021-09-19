@@ -24,11 +24,7 @@ def check_sends():
 🌐 via {entry.author} | @NoteZV
 ╰• {entry.title}
 """
-        buttons = [
-            [
-                InlineKeyboardButton(text="Assistir ao vídeo", url=entry.link),
-            ]
-        ]
+        buttons = [[InlineKeyboardButton(text="Assistir ao vídeo", url=entry.link)]]
         try:
             NoteNews.send_photo(-1001165341477, entry.media_thumbnail[0]["url"], caption=message, reply_markup=InlineKeyboardMarkup(buttons))
             db.update_link(feed_url, entry.id)
