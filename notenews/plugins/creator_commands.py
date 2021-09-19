@@ -9,7 +9,7 @@ from functools import partial, wraps
 cmd = partial(filters.command, prefixes=list("/"))
 
 
-@NoteMusic.on_message(cmd("add"))
+@NoteNews.on_message(cmd("add"))
 async def add_feed(_, message: Message):
     if Functions.check_owner(message.from_user.id) == True:
         heroku_conn = heroku3.from_key(Config.HU_KEY)
