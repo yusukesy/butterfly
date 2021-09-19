@@ -13,7 +13,7 @@ from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 
 
 def check_sends():
-    feeda_url = ["http://feeds.feedburner.com/Kultivi", "http://feeds.feedburner.com/DevAprender", "http://feeds.feedburner.com/youtube/einerd/feed"]
+    feeds_url = ["http://feeds.feedburner.com/Kultivi", "http://feeds.feedburner.com/DevAprender", "http://feeds.feedburner.com/youtube/einerd/feed"]
     feed_url = random.choice(feeds_url)
     FEED = feedparser.parse(feed_url)
     entry = FEED.entries[0]
