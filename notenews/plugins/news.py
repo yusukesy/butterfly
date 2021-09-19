@@ -19,6 +19,8 @@ def check_send():
     feed_url = random.choice(Config.FEED_URLS)
     FEED = feedparser.parse(feed_url)
     entry = FEED.entries[0]
+    if db.get_link(feed_url) == None:
+        db.update_link(feed_url, "*")
     if entry.id != db.get_link(feed_url).link:
         message = f"""
 🎮 {entry.title}
