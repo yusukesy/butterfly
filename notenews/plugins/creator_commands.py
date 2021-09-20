@@ -50,5 +50,12 @@ async def idk(_, message: Message):
     if Functions.check_owner(message.from_user.id) == True:
         heroku_conn = heroku3.from_key(Config.HU_KEY)
         app = heroku_conn.apps()[Config.HU_APP]
-        heroku_vars = app.config()["FEED_URLS"].split(" | ")
+        if not url[:3] == "-yt":
+            feeds = app.config()["FEED_URLS"].split(" | ")
+            for feed in feeds:
+                await message.reply(feed, quote=True)
+            return
+        feeds = app.config()["YT_URLS"].split(" | ")
+        for feed in feeds:
+            await message.reply(feed, quote=True)
         
