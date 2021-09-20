@@ -40,4 +40,6 @@ async del_feed(_, message: Message):
             await message.reply("Feed removido! Reiniciando...", quote=True)
             heroku_vars["FEED_URLS"] = var.replace(f" | {url}", "")
             return
-        
+        var = heroku_vars["YT_URLS"]
+        await message.reply("Canal removido! Reiniciando...", quote=True)
+        heroku_vars["YT_URLS"] = var.replace(f" | {url[4:]}", "")
