@@ -48,14 +48,8 @@ async def del_feed(_, message: Message):
 @NoteNews.on_message(cmd("idk"))
 async def idk(_, message: Message):
     if Functions.check_owner(message.from_user.id) == True:
-        heroku_conn = heroku3.from_key(Config.HU_KEY)
-        app = heroku_conn.apps()[Config.HU_APP]
-        if not Functions.input_str(message)[:3] == "-yt":
-            feeds = app.config()["FEED_URLS"].split(" | ")
-            for feed in feeds:
-                await message.reply(feed, quote=True)
+        if not Functions.input_str(message) == "-yt":
+            await message.reply(Config.FEED_URLS, quote=True)
             return
-        feeds = app.config()["YT_URLS"].split(" | ")
-        for feed in feeds:
-            await message.reply(feed, quote=True)
+        await message.reply(Config.YT_URLS, quote=True)
         
