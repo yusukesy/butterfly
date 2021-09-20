@@ -18,6 +18,12 @@ async def add_feed(_, message: Message):
         heroku_conn = heroku3.from_key(Config.HU_KEY)
         app = heroku_conn.apps()[Config.HU_APP]
         heroku_vars = app.config()
-        var = heroku_vars["FEED_URLS"]
-        await message.reply("Feed adicionado! Reiniciando...", quote=True)
-        heroku_vars["FEED_URLS"] = f"{var} | {Functions.input_str(message)}"
+        url = Functions.input_str(message)
+        if not url[:3] == "-yt":
+            var = heroku_vars["FEED_URLS"]
+            await message.reply("Feed adicionado! Reiniciando...", quote=True)
+            heroku_vars["FEED_URLS"] = f"{var} | {url}"
+            return
+        var = heroku_vars["YT_URLS"]
+        await message.reply("Canal adicionado! Reiniciando...", quote=True)
+        heroku_vars["YT_URLS"] = f"{var} | {url}"
