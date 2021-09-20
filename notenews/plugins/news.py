@@ -15,13 +15,14 @@ def check_send():
     FEED = feedparser.parse(feed_url)
     entry = FEED.entries[0]
     m = "https:" + entry.links[1].href if feed_url == "https://betteranime.net/lancamentos-rss" else entry.link
+    k = entry.comments.replace("#respond", "") if feed_url == "http://feeds.feedburner.com/gizmocn" else entry.link
     if db.get_link(feed_url) == None:
         db.update_link(feed_url, "*")
         return
     if entry.id != db.get_link(feed_url).link:
         message = f"""
 🎮 [\u200c]({m}){entry.title}
-▫️ | {entry.link}
+▫️ | {k}
 
 ◾️ | <code>Mantido por:</code> @NoteZV
 """
