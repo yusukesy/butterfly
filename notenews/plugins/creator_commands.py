@@ -26,4 +26,4 @@ async def add_feed(_, message: Message):
             return
         var = heroku_vars["YT_URLS"]
         await message.reply("Canal adicionado! Reiniciando...", quote=True)
-        heroku_vars["YT_URLS"] = f"{var} | {url}"
+        heroku_vars["YT_URLS"] = f"{var} | {url[4:]}"
