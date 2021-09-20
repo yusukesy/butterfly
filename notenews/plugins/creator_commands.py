@@ -43,3 +43,12 @@ async def del_feed(_, message: Message):
         var = heroku_vars["YT_URLS"]
         await message.reply("Canal removido! Reiniciando...", quote=True)
         heroku_vars["YT_URLS"] = var.replace(f" | {url[4:]}", "")
+        
+        
+@NoteNews.on_message(cmd("idk"))
+async def idk(_, message: Message):
+    if Functions.check_owner(message.from_user.id) == True:
+        heroku_conn = heroku3.from_key(Config.HU_KEY)
+        app = heroku_conn.apps()[Config.HU_APP]
+        heroku_vars = app.config()["FEED_URLS"].split(" | ")
+        
