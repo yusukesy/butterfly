@@ -14,6 +14,7 @@ def check_send():
     feed_url = random.choice(Config.FEED_URLS)
     FEED = feedparser.parse(feed_url)
     entry = FEED.entries[0]
+    m = "https:" + entry.links[1].href if feed_url == "https://betteranime.net/lancamentos-rss" else entry.link
     if db.get_link(feed_url) == None:
         db.update_link(feed_url, "*")
         return
