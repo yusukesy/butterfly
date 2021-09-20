@@ -61,3 +61,12 @@ async def idk(_, message: Message):
             return
         await message.reply(Config.YT_URLS, quote=True)
         
+        
+        
+import feedparser as fp
+
+@NoteNews.on_message(cmd("summ"))
+async def summ(_, message: Message):
+    feed = fp.parse("http://feeds.feedburner.com/gizmocn").entries[0]
+    await message.reply(feed.summary, quote=True)
+        
