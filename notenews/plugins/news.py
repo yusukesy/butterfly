@@ -21,10 +21,12 @@ def check_send():
         return
     if entry.id != db.get_link(feed_url).link:
         message = f"""
-🎮 [\u200c]({m}){entry.title}
-▫️ | {k}
+🎮 | via **[{entry.author}]({entry.link}): **{entry.title}**
+➖ ➖ ➖ ➖ ➖ ➖ ➖ ➖
+**Resumo:** {entry.summary}
+➖ ➖ ➖ ➖ ➖ ➖ ➖ ➖
 
-◾️ | <code>Mantido por:</code> @NoteZV
+▫️ | Mantido por: @NoteZV
 """
         try:
             NoteNews.send_message(Config.LOG_CHANNEL, message)
