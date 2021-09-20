@@ -6,8 +6,8 @@ from pyrogram import filters
 
 import heroku3
 
-
 from functools import partial, wraps
+import time
 
 cmd = partial(filters.command, prefixes=list("/"))
 
@@ -21,11 +21,15 @@ async def add_feed(_, message: Message):
         url = Functions.input_str(message)
         if not url[:3] == "-yt":
             var = heroku_vars["FEED_URLS"]
-            await message.reply("Feed adicionado! Reiniciando...", quote=True)
+            msg: Message = await message.reply("`Feed adicionado ✅\nReiniciando...`", quote=True)
+            time.sleep(3)
+            await msg.delete(); await message.delete()
             heroku_vars["FEED_URLS"] = f"{var} | {url}"
             return
         var = heroku_vars["YT_URLS"]
-        await message.reply("Canal adicionado! Reiniciando...", quote=True)
+        mns: Message = await message.reply("`Canal adicionado ✅\nReiniciando...`", quote=True)
+        time.sleep(3)
+        await mns.delete(); await message.delete()
         heroku_vars["YT_URLS"] = f"{var} | {url[4:]}"
         
 @NoteNews.on_message(cmd("del"))
@@ -37,11 +41,15 @@ async def del_feed(_, message: Message):
         url = Functions.input_str(message)
         if not url[:3] == "-yt":
             var = heroku_vars["FEED_URLS"]
-            await message.reply("Feed removido! Reiniciando...", quote=True)
+            msg: Message = await message.reply("`Feed removido ❎\nReiniciando...`", quote=True)
+            time.sleep(3)
+            await msg.delete(); await message.delete()
             heroku_vars["FEED_URLS"] = var.replace(f" | {url}", "")
             return
         var = heroku_vars["YT_URLS"]
-        await message.reply("Canal removido! Reiniciando...", quote=True)
+        mns: Message = await message.reply("`Canal removido ❎\nReiniciando...`", quote=True)
+        time.sleep(3)
+        await mns.delete(); await message.delete()
         heroku_vars["YT_URLS"] = var.replace(f" | {url[4:]}", "")
         
         
