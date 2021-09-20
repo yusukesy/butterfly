@@ -29,7 +29,7 @@ async def add_feed(_, message: Message):
         heroku_vars["YT_URLS"] = f"{var} | {url[4:]}"
         
 @NoteNews.on_message(cmd("del"))
-async del_feed(_, message: Message):
+async def del_feed(_, message: Message):
     if Functions.check_owner(message.from_user.id) == True:
         heroku_conn = heroku3.from_key(Config.HU_KEY)
         app = heroku_conn.apps()[Config.HU_APP]
