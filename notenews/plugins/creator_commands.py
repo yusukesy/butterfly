@@ -27,3 +27,17 @@ async def add_feed(_, message: Message):
         var = heroku_vars["YT_URLS"]
         await message.reply("Canal adicionado! Reiniciando...", quote=True)
         heroku_vars["YT_URLS"] = f"{var} | {url[4:]}"
+        
+@NoteNews.on_message(cmd("del"))
+async del_feed(_, message: Message):
+    if Functions.check_owner(message.from_user.id) == True:
+        heroku_conn = heroku3.from_key(Config.HU_KEY)
+        app = heroku_conn.apps()[Config.HU_APP]
+        heroku_vars = app.config()
+        url = Functions.input_str(message)
+        if not url[:3] == "-yt":
+            var = heroku_vars["FEED_URLS"]
+            await message.reply("Feed removido! Reiniciando...", quote=True)
+            heroku_vars["FEED_URLS"] = var.replace(f" | {url}", "")
+            return
+        
