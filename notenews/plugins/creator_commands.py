@@ -60,19 +60,3 @@ async def idk(_, message: Message):
             await message.reply(Config.FEED_URLS, quote=True)
             return
         await message.reply(Config.YT_URLS, quote=True)
-        
-        
-        
-        
-        
-import schedule, time
-
-def enviar():
-    NoteNews.send_message(-1001165341477, "@NoteZV\n\nPELO AMOR SE DEUS, FAÇA O QUE O PROFESSOR DE MATEMÁTICA PEDIU. VEJA O QUE ELE DISSE NO GRUPO DA ESCOLA, PLMDS.\n@NoteZV")
-    
-
-schedule.every().day.at("15:30").do(enviar)
-
-while 1:
-    schedule.run_pending()
-    time.sleep(1)
