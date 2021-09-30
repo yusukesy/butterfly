@@ -20,7 +20,7 @@ def check_send():
         return
     if entry.id != db.get_link(feed_url).link:
         message = f"""
-[\u200c]({m})🎮 | via **{entry.author}:** **[{entry.title}]({entry.link})**
+[\u200c]({m})🌐 | via **{entry.author}:** **[{entry.title}]({entry.link})**
 
 ▫️ | Mantido por: @NoteZV
 """
