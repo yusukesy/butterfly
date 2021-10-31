@@ -1,5 +1,7 @@
 import os
+
 from pyrogram import Client
+
 
 class Config:
     API_ID = int(os.environ.get("API_ID"))
@@ -27,6 +29,16 @@ class NoteBot(Client):
     async def start(self):
         await super().start()
         print("START")
+        try:
+            for p in os.listdir("notenews/plugins"):
+                if p.endswith(".py"):
+                    arq = p.replace(".py", "")
+                    importlib.import_module("plugins." + arq)
+        except Exception as e:
+            print(str(e))
+            await self.send_message(-100116534147, f"**❌ OCORREU UM ERRO**\n\nNão foi possível importar os plugins, ocorreu este erro: `{str(e)}`")
+        else:
+            await self.send_message(-1001165341477, "`NoteNews iniciado com sucesso!`")
 
     async def stop(self):
         await super().stop()
