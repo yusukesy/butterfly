@@ -55,8 +55,13 @@ async def del_feed(_, message: Message):
         
 @NoteNews.on_message(cmd("idk"))
 async def idk(_, message: Message):
+    msg = ""
     if Functions.check_owner(message.from_user.id) == True:
         if not Functions.input_str(message) == "-yt":
-            await message.reply(Config.FEED_URLS, quote=True)
+            for url in Config.FEED_URLS:
+                msg += f"{url}\n"
+            await message.reply(msg, quote=True)
             return
-        await message.reply(Config.YT_URLS, quote=True)
+        for url in Config.YT_URLS:
+            msg += f"{url}\n"
+        await message.reply(url, quote=True)
