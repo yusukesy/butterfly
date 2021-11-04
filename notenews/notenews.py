@@ -1,4 +1,4 @@
-from pyrogram.types import message
+from pyrogram.types import Mesage
 
 class Functions:
     def input_str(message) -> str:
