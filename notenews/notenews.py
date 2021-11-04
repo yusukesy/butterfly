@@ -1,3 +1,5 @@
+from pyrogram.types import message
+
 class Functions:
     def input_str(message) -> str:
     	input_ = message.text
@@ -12,5 +14,3 @@ class Functions:
         return False
     
 filter_owner = filters.create(Functions.check_owner)
-
-
