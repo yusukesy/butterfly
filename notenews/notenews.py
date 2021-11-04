@@ -5,8 +5,12 @@ class Functions:
     		return str(input_.split(maxsplit=1)[1].strip())
     	return ''
     	
-    def check_owner(user: int) -> bool:
-        CREATOR_ID = 1157759484
-        if user == CREATOR_ID:
+    CREATOR_ID = 1157759484
+    async def check_owner(_, __, message: Message) -> bool:
+        if message.from_user.id == CREATOR_ID:
             return True
         return False
+    
+filter_owner = filters.create(Functions.check_owner)
+
+
