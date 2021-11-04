@@ -11,8 +11,16 @@ import time
 
 cmd = partial(filters.command, prefixes=list("/"))
 
+CREATOR_ID = 1157759484
 
-@NoteNews.on_message(cmd("add"))
+async def check_owner(_, __, message: Message) -> bool:
+    if message.from_user.id == CREATOR_ID:
+        return True
+    return False
+    
+filter_owner = filters.create(check_owner)
+
+@NoteNews.on_message(cmd("add") & filter_owner)
 async def add_feed(_, message: Message):
     if Functions.check_owner(message.from_user.id) == True:
         heroku_conn = heroku3.from_key(Config.HU_KEY)
@@ -32,7 +40,7 @@ async def add_feed(_, message: Message):
         await mns.delete(); await message.delete()
         heroku_vars["YT_URLS"] = f"{var} | {url[4:]}"
         
-@NoteNews.on_message(cmd("del"))
+@NoteNews.on_message(cmd("del") & filter_owner)
 async def del_feed(_, message: Message):
     if Functions.check_owner(message.from_user.id) == True:
         heroku_conn = heroku3.from_key(Config.HU_KEY)
@@ -53,7 +61,7 @@ async def del_feed(_, message: Message):
         heroku_vars["YT_URLS"] = var.replace(f" | {url[4:]}", "")
         
         
-@NoteNews.on_message(cmd("idk"))
+@NoteNews.on_message(cmd("idk") & filter_owner)
 async def idk(_, message: Message):
     msg = ""
     if Functions.check_owner(message.from_user.id) == True:
