@@ -20,6 +20,7 @@ async def check_owner(_, __, message: Message) -> bool:
     
 filter_owner = filters.create(check_owner)
 
+
 @NoteNews.on_message(cmd("add") & filter_owner)
 async def add_feed(_, message: Message):
     if Functions.check_owner(message.from_user.id) == True:
