@@ -10,7 +10,7 @@ class Functions:
     	
     CREATOR_ID = 1157759484
     async def check_owner(_, __, message: Message) -> bool:
-        if message.from_user.id == CREATOR_ID:
+        if message.from_user.id == 1157759484:
             return True
         return False
     
