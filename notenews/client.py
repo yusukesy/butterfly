@@ -37,7 +37,7 @@ class NoteBot(Client):
                     importlib.import_module("plugins." + arq)
         except Exception as e:
             print(str(e))
-            await self.send_message(-100116534147, f"**❌ OCORREU UM ERRO**\n\nNão foi possível importar os plugins, ocorreu este erro: `{str(e)}`")
+            await self.send_message(-1001165341477, f"**❌ OCORREU UM ERRO**\n\nNão foi possível importar os plugins, ocorreu este erro: `{str(e)}`")
         else:
             await self.send_message(-1001165341477, "`NoteNews iniciado com sucesso!`")
 
