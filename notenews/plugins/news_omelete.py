@@ -10,9 +10,6 @@ from pyrogram.errors import FloodWait
 from client import Config, NoteNews
 
 
-title = str(soup.main.a.h2).replace("<h2>", "").replace("</h2>", "")
-link = "https://omelete.com.br" + soup.main.a.get("href")
-
 def check_send():
     html = requests.get("https://www.omelete.com.br/noticias").content
     soup = bs(html, "html.parser")
