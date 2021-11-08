@@ -19,6 +19,8 @@ def check_send():
         db.update_link(feed_url, "*")
         return
     if entry.id != db.get_link(feed_url).link:
+        if "Mushoku Tensei: Isekai Ittara Honki Dasu 2nd Season" in entry.title:
+            NoteNews.send_message(-1001165341477, f"[\u200c]({entry.link})**Novo episódio da 2° Temporada de Mushoku Tensei**\n\n{entry.link}")
         message = f"""
 [\u200c]({m})🌐 | via **{entry.author}:** **[{entry.title}]({entry.link})**
 
