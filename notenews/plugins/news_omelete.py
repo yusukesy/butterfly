@@ -13,6 +13,7 @@ from client import Config, NoteNews
 def check_send():
     html = requests.get("https://www.omelete.com.br/noticias").content
     soup = bs(html, "html.parser")
+    title = str(soup.main.a.h2).replace("<h2>", "").replace("</h2>", "")
     link = "https://omelete.com.br" + soup.main.a.get("href")
     website = "https://omelete.com.br/noticias"
     if link is not None:
