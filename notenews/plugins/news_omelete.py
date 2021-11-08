@@ -2,6 +2,7 @@ from bs4 import BeautifulSoup as bs
 import requests
 
 from time import sleep
+import random
 
 from .sql import db
 from apscheduler.schedulers.background import BackgroundScheduler
@@ -11,18 +12,20 @@ from client import Config, NoteNews
 
 
 def check_send():
-    html = requests.get("https://www.omelete.com.br/noticias").content
+    urls = ["https://www.omelete.com.br/noticias", "https://www.adorocinema.com/noticias-materias-especiais/"]
+    website = random.choice(urls)
+    html = requests.get(website).content
     soup = bs(html, "html.parser")
-    title = str(soup.main.a.h2).replace("<h2>", "").replace("</h2>", "")
-    link = "https://omelete.com.br" + soup.main.a.get("href")
-    website = "https://omelete.com.br/noticias"
+    author = "Omelete" if website == "https://www.omelete.com.br/noticias" else "Adoro Cinema"
+    title = str(soup.main.a.h2.string) if website == "https://www.omelete.com.br/noticias" else str(soup.main.h2.a.string)
+    link = "https://omelete.com.br" + str(soup.main.a.get("href")) if website == "https://www.omelete.com.br/noticias" else "https://www.adorocinema.com" + str(soup.main.h2.a.get("href"))
     if link is not None:
         if db.get_link(website) == None:
             db.update_link(website, "*")
             return
         if link != db.get_link(website).link:
             message = f"""
-[\u200c]({link})🌐 | via **Omelete:** **[{title}]({link})**
+[\u200c]({link})🌐 | via **{author}:** **[{title}]({link})**
 
 ▫️ | Mantido por: @NoteZV
 """
@@ -38,5 +41,5 @@ def check_send():
             print(f"FEED Verificado: {link}")
             
 scheduler = BackgroundScheduler()
-scheduler.add_job(check_send, "interval", seconds=Config.CHECK_INTERVAL, max_instances=Config.MAX_INSTANCES)
+scheduler.add_job(check_send, "interval", seconds=1, max_instances=Config.MAX_INSTANCES)
 scheduler.start()
