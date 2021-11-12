@@ -12,11 +12,11 @@ from client import Config, NoteNews
 
 
 def check_send():
-    urls = ["https://www.omelete.com.br/noticias", "https://www.adorocinema.com/noticias-materias-especiais/"]
+    urls = ["https://www.omelete.com.br/noticias/", "https://www.adorocinema.com/noticias-materias-especiais/"]
     website = random.choice(urls)
     html = requests.get(website).content
     soup = bs(html, "html.parser")
-    if website == "https://www.omelete.com.br/noticias":
+    if website == "https://www.omelete.com.br/noticias/":
         # NoteNews.send_message(-1001165341477, f"Linha 17 - Website | Omelete\n\n{website}")
         all = soup.find(attrs={"class": "analytic-featured"})
         author = "Omelete"
