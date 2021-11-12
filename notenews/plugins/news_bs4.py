@@ -20,7 +20,7 @@ def check_send():
         # NoteNews.send_message(-1001165341477, f"Linha 17 - Website | Omelete\n\n{website}")
         author = "Omelete"
         title = str(soup.main.a.h2.string)
-        link = "https://omelete.com.br" + str(soup.main.a.get("href"))
+        link = "https://omelete.com.br" + str(soup.main.a["href"])#.get("href"))
         # NoteNews.send_message(-1001165341477, f"Linha 28 - Link | Omelete\n\n{link}")
     elif website == "https://www.adorocinema.com/noticias-materias-especiais/":
         author = "Adoro Cinema"
