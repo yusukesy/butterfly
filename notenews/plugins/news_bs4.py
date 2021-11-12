@@ -16,7 +16,7 @@ def check_send():
     website = random.choice(urls)
     html = requests.get(website).content
     soup = bs(html, "html.parser")
-    if website == "www.https://omelete.com.br/noticias":
+    if website == "https://www.omelete.com.br/noticias":
         # NoteNews.send_message(-1001165341477, f"Linha 17 - Website | Omelete\n\n{website}")
         all = soup.find(attrs={"class": "analytic-featured"})
         author = "Omelete"
