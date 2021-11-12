@@ -12,9 +12,9 @@ from client import Config, NoteNews
 
 
 def check_send():
-    urls = ["https://www.omelete.com.br/noticias", "https://www.adorocinema.com/noticias-materias-especiais/"]
-    website = random.choice(urls)
-    NoteNews.send_message(-1001165341477, f"Linha 17 - Website\n\n{website}")
+    urls = "https://www.adorocinema.com/noticias-materias-especiais/"# ["https://www.omelete.com.br/noticias", "https://www.adorocinema.com/noticias-materias-especiais/"]
+    website = urls #random.choice(urls)
+    # NoteNews.send_message(-1001165341477, f"Linha 17 - Website\n\n{website}")
     html = requests.get(website).content
     soup = bs(html, "html.parser")
     if website == "https://www.omelete.com.br/noticias":
@@ -26,14 +26,14 @@ def check_send():
         title = str(soup.main.h2.a.string)
         link = "https://www.adorocinema.com" + str(soup.main.h2.a.get("href"))
     if link is not None:
-        NoteNews.send_message(-1001165341477, f"Linha 28 - Link\n\n{link}")
+        # NoteNews.send_message(-1001165341477, f"Linha 28 - Link\n\n{link}")
         if db.get_link(website) == None:
             db.update_link(website, "*")
             return
         if link != db.get_link(website).link:
-            NoteNews.send_message(-1001165341477, f"Linha 34 - Depois do link ser mudado | Website\n\n{website}")
-            NoteNews.send_message(-1001165341477, f"Linha 35 - Depois do link ser mudado | Link\n\n{link}")
-            NoteNews.send_message(-1001165341477, f"Linha 36 - Depois do link ser mudado | Database Link\n\n{db.get_link(website).link}")
+            # NoteNews.send_message(-1001165341477, f"Linha 34 - Depois do link ser mudado | Website\n\n{website}")
+             #NoteNews.send_message(-1001165341477, f"Linha 35 - Depois do link ser mudado | Link\n\n{link}")
+            # NoteNews.send_message(-1001165341477, f"Linha 36 - Depois do link ser mudado | Database Link\n\n{db.get_link(website).link}")
             message = f"""
 [\u200c]({link})🌐 | via **{author}:** **[{title}]({link})**
 
@@ -51,5 +51,5 @@ def check_send():
             print(f"FEED Verificado: {link}")
             
 scheduler = BackgroundScheduler()
-scheduler.add_job(check_send, "interval", seconds=10, max_instances=Config.MAX_INSTANCES)
+scheduler.add_job(check_send, "interval", seconds=900, max_instances=Config.MAX_INSTANCES)
 scheduler.start()
