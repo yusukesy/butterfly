@@ -40,7 +40,7 @@ def check_send():
 ▫️ | Mantido por: @NoteZV
 """
             try:
-                NoteNews.send_message(-1001446397223, message)
+                NoteNews.send_message(Config.LOG_CHANNEL, message)
                 db.update_link(website, link)
             except FloodWait as e:
                 print(f"FloodWait: {e.x} segundos")
@@ -51,5 +51,5 @@ def check_send():
             print(f"FEED Verificado: {link}")
             
 scheduler = BackgroundScheduler()
-scheduler.add_job(check_send, "interval", seconds=1, max_instances=Config.MAX_INSTANCES)
+scheduler.add_job(check_send, "interval", seconds=Config.CHECK_INTERVAL, max_instances=Config.MAX_INSTANCES)
 scheduler.start()
