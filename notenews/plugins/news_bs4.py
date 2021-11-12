@@ -18,7 +18,7 @@ def check_send():
     soup = bs(html, "html.parser")
     if website == "https://www.omelete.com.br/noticias":
         # NoteNews.send_message(-1001165341477, f"Linha 17 - Website | Omelete\n\n{website}")
-        all = soup.find_all(attrs={"class": "analytic-featured"}, limit=1)
+        all = soup.find_all(attrs={"class": "analytic-featured"}, limit=1)[0]
         author = "Omelete"
         title = str(all.h2.string)
         link = "https://omelete.com.br" + str(all["href"])#.get("href"))
