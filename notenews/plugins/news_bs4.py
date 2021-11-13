@@ -12,7 +12,8 @@ from client import Config, NoteNews
 
 
 def check_send():
-    website = ["https://www.adorocinema.com/noticias-materias-especiais/", "https://www.omelete.com.br/noticias"]
+    website_  = ["https://www.adorocinema.com/noticias-materias-especiais/", "https://www.omelete.com.br/noticias"]
+    website = random.choice(website_)
     html = requests.get(website).content
     soup = bs(html, "html.parser")
     # author = "Adoro Cinema" #
