@@ -17,7 +17,7 @@ def check_send():
     html = requests.get(website).content
     soup = bs(html, "html.parser")
     # author = "Adoro Cinema" #
-    title = str(soup.main.h2.a.string) if website != "https://www.omelete.com.br/noticias" else str(soup.main.h2.string)
+    title = str(soup.main.h2.a.string) if website != "https://www.omelete.com.br/noticias" else str(soup.main.a.h2.string)
     link = "https://www.adorocinema.com" + str(soup.main.h2.a.get("href")) if website != "https://www.omelete.com.br/noticias" else "https://www.omelete.com.br" + str(soup.main.a.get("href"))
     if link is not None:
         if db.get_link(website) == None:
