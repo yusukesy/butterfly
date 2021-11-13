@@ -16,12 +16,13 @@ from .sql import db
 @NoteNews.on_message(cmd("see"))
 async def see(_, message: Message):
     try:
-        k = ""
-        for link in db.get_all():
-            k += f"{link}\n"
-        await message.reply(k)
-    except Exception as e:
+        # k = ""
+        # for link in db.get_all():
+            # k += f"{link}\n"
         await message.reply(str(db.get_link("oi")))
+        # await message.reply(k)
+    except Exception as e:
+        
         await message.reply(str(e))
         
 @NoteNews.on_message(cmd("add") & filter_owner)
@@ -39,7 +40,7 @@ async def add_feed(_, message: Message):
         return
     var = heroku_vars["YT_URLS"]
     mns: Message = await message.reply("`Canal adicionado ✅\nReiniciando...`", quote=True)
-    time.sleep(3)
+    time.sleep(3) 
     await mns.delete(); await message.delete()
     heroku_vars["YT_URLS"] = f"{var} | {url[4:]}"
         
