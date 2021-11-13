@@ -31,11 +31,3 @@ def update_link(website, link):
         )
     SESSION.add(adder)
     SESSION.commit()
-
-update_link("oi", "io")
-    
-def get_all():
-    try:
-        return SESSION.query(database).all()
-    finally:
-        SESSION.close()
