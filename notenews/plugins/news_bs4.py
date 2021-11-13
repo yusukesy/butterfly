@@ -12,7 +12,7 @@ from client import Config, NoteNews
 
 
 def check_send():
-    website = https://www.adorocinema.com/noticias-materias-especiais/"
+    website = "https://www.adorocinema.com/noticias-materias-especiais/"
     html = requests.get(website).content
     soup = bs(html, "html.parser")
     # author = "Adoro Cinema" #
