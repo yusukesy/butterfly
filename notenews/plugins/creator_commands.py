@@ -21,7 +21,7 @@ async def see(_, message: Message):
             k += f"{link}\n"
         await message.reply(k)
     except Exception as e:
-        await message.reply(str(db.get_lin("oi")))
+        await message.reply(str(db.get_link("oi")))
         await message.reply(str(e))
         
 @NoteNews.on_message(cmd("add") & filter_owner)
