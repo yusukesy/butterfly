@@ -12,13 +12,12 @@ from client import Config, NoteNews
 
 
 def check_send():
-    website_  = ["https://www.adorocinema.com/noticias-materias-especiais/", "https://www.omelete.com.br/noticias"]
-    website = random.choice(website_)
+    website = "https://www.adorocinema.com/noticias-materias-especiais/"
     html = requests.get(website).content
     soup = bs(html, "html.parser")
     # author = "Adoro Cinema" #
-    title = str(soup.main.h2.a.string) if website != "https://www.omelete.com.br/noticias" else str(soup.main.a.h2.string)
-    link = "https://www.adorocinema.com" + str(soup.main.h2.a.get("href")) if website != "https://www.omelete.com.br/noticias" else "https://www.omelete.com.br" + str(soup.main.a.get("href"))
+    title = str(soup.main.h2.a.string)
+    link = "https://www.adorocinema.com" + str(soup.main.h2.a.get("href"))
     if link is not None:
         if db.get_link(website) == None:
             db.update_link(website, "*")
@@ -30,7 +29,7 @@ def check_send():
 ▫️ | Mantido por: @NoteZV
 """
             try:
-                NoteNews.send_message(-1001165341477, message)
+                NoteNews.send_message(Config.LOG_CHANNEL, message)
                 db.update_link(website, link)
             except FloodWait as e:
                 print(f"FloodWait: {e.x} segundos")
