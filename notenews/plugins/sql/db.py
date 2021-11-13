@@ -21,16 +21,28 @@ def get_link(website):
         SESSION.close()
 
 def update_link(website, link):
-    adder = SESSION.query(database).get(website)
-    if adder:
-        adder.link = link
-    else:
-        adder = database(
-            website,
-            link
-        )
+    to_check = get_note(website)
+    if not to_check:
+        adder = Notes(website, reply)
+        SESSION.add(adder)
+        SESSION.commit()
+        return
+    rem = SESSION.query(Notes).get(website)
+    SESSION.delete(rem)
+    SESSION.commit()
+    adder = Notes(website, reply)
     SESSION.add(adder)
     SESSION.commit()
+    # adder = SESSION.query(database).get(website)
+    # if adder:
+        # adder.link = link
+    # else:
+        # adder = database(
+            # website,
+            # link
+        # )
+    # SESSION.add(adder)
+    # SESSION.commit()
     
 #
 def get_all():
