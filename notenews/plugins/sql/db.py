@@ -31,3 +31,9 @@ def update_link(website, link):
         )
     SESSION.add(adder)
     SESSION.commit()
+    
+def get_all():
+    try:
+        return SESSION.query(database).all()
+    finally:
+        SESSION.close()
