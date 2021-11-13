@@ -12,6 +12,17 @@ import time
 
 cmd = partial(filters.command, prefixes=list("/"))
 
+from .sql import db
+@NoteNews.on_message(cmd("see"))
+async def see(_, message: Message):
+    try:
+        k = ""
+        for link in db.get_all():
+            k += f"{link}\n"
+        await message.reply(k)
+    except Exception as e:
+        await message.reply(str(e))
+        
 @NoteNews.on_message(cmd("add") & filter_owner)
 async def add_feed(_, message: Message):
     heroku_conn = heroku3.from_key(Config.HU_KEY)
