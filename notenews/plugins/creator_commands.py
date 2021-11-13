@@ -12,7 +12,6 @@ import time
 
 cmd = partial(filters.command, prefixes=list("/"))
 
-
 @NoteNews.on_message(cmd("add") & filter_owner)
 async def add_feed(_, message: Message):
     heroku_conn = heroku3.from_key(Config.HU_KEY)
