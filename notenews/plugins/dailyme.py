@@ -13,13 +13,18 @@ from client import Config, NoteNews
 
 
 def check_send():
-    urls = "https://www.tecmundo.com.br/tecnologia/"
+    urls = "https://canaltech.com.br/ultimas/"
     website = urls
     html = requests.get(urls).content
     soup = bs(html, "html.parser")
-    author = "TecMundo"
-    title = str(soup.find("div", attrs={"class": "tec--list__item"}).div.a.string)
-    link = str(soup.find("div", attrs={"class": "tec--list__item"}).div.a.get("href"))
+    if website == "https://www.tecmundo.com.br/tecnologia/":
+        author = "TecMundo"
+        title = str(soup.find("div", attrs={"class": "tec--list__item"}).div.a.string)
+        link = str(soup.find("div", attrs={"class": "tec--list__item"}).div.a.get("href"))
+    if website == "https://canaltech.com.br/ultimas/":
+        author = "CanalTech"
+        link = "https://canaltech.com.br" + str(soup.section.a.get("href"))
+        title = str(soup.section.a.h3.string)
     if link is not None:
         if db.get_link(website) == None:
             db.update_link(website, "*")
