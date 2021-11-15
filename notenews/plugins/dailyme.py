@@ -13,7 +13,7 @@ from client import Config, NoteNews
 
 
 def check_send():
-    urls = "https://canaltech.com.br/ultimas/"
+    urls = "https://olhardigital.com.br/editorias/noticias/feed/"
     website = urls
     html = requests.get(urls).content
     soup = bs(html, "html.parser")
@@ -25,6 +25,12 @@ def check_send():
         author = "CanalTech"
         link = "https://canaltech.com.br" + str(soup.section.a.get("href"))
         title = str(soup.section.a.h3.string)
+    if website = "https://olhardigital.com.br/editorias/noticias/feed/":
+        author = "Olhar Digital"
+        feed = feedparser.parse("https://olhardigital.com.br/editorias/noticias/feed/")
+        entry = feed.entries[0]
+        link = entry.link
+        title = entry.title
     if link is not None:
         if db.get_link(website) == None:
             db.update_link(website, "*")
