@@ -25,7 +25,7 @@ def check_send():
         author = "CanalTech"
         link = "https://canaltech.com.br" + str(soup.section.a.get("href"))
         title = str(soup.section.a.h3.string)
-    if website = "https://olhardigital.com.br/editorias/noticias/feed/":
+    if website == "https://olhardigital.com.br/editorias/noticias/feed/":
         author = "Olhar Digital"
         feed = feedparser.parse("https://olhardigital.com.br/editorias/noticias/feed/")
         entry = feed.entries[0]
