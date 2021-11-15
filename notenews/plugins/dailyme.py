@@ -13,6 +13,7 @@ from client import Config, NoteNews
 
 
 def check_send():
+    print("HEREEEEEEEE")
     websites = ["https://canaltech.com.br/ultimas/", "https://www.tecmundo.com.br/tecnologia/", "https://olhardigital.com.br/editorias/noticias/feed/"]
     website = random.choice(websites)
     html = requests.get(website).content
