@@ -31,9 +31,12 @@ class NoteBot(Client):
         await super().start()
         print("START")
         try:
-            for p in os.listdir("notenews/plugins"):
+            path = os.listdir("notenews/plugins")
+            path.remove("dailyme.py")
+            for p in path:
                 if p.endswith(".py"):
                     arq = p.replace(".py", "")
+                    importlib.import_module("plugins.dailyme")
                     importlib.import_module("plugins." + arq)
         except Exception as e:
             print(str(e))
