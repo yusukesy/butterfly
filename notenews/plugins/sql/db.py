@@ -31,3 +31,6 @@ def update_link(website, link):
         )
     SESSION.add(adder)
     SESSION.commit()
+    
+def get_all():
+    return str(SESSION.query(database).all())
