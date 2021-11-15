@@ -14,6 +14,7 @@ from client import Config, NoteNews
 
 def check_send():
     urls = "https://www.tecmundo.com.br/tecnologia/"
+    website = urls
     html = requests.get(urls).content
     soup = bs(html, "html.parser")
     author = "TecMundo"
