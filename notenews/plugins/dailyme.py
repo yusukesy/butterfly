@@ -13,7 +13,6 @@ from client import Config, NoteNews
 
 
 def check_send():
-    print("HEREEEEEEEE")
     websites = ["https://canaltech.com.br/ultimas/", "https://www.tecmundo.com.br/tecnologia/", "https://olhardigital.com.br/editorias/noticias/feed/"]
     website = random.choice(websites)
     html = requests.get(website).content
@@ -50,8 +49,8 @@ def check_send():
                 sleep(e.x)
             except Exception as e:
                 print(str(e))
-            else:
-                print(f"FEED Verificado: {link}")
+        else:
+            print(f"FEED Verificado: {link}")
                 
 scheduler = BackgroundScheduler()
 scheduler.add_job(check_send, "interval", seconds=1, max_instances=Config.MAX_INSTANCES)
