@@ -24,7 +24,7 @@ def check_send():
             db.update_link(website, "*")
             return
         if link != db.get_link(website).link:
-        message = f"""
+            message = f"""
 [\u200c]({link})🌐 | via **Adoro Cinema:** **[{title}]({link})**
 
 ▫️ | Mantido por: @NoteZV
