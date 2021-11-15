@@ -42,7 +42,7 @@ def check_send():
 ▫️ | Mantido por: @NoteZV
 """
             try:
-                NoteNews.send_message(-1001165341477, message)
+                NoteNews.send_message(-1001666072628, message)
                 db.update_link(website, link)
             except FloodWait as e:
                 print(f"FloodWait: {e.x} segundos")
