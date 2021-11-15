@@ -15,7 +15,7 @@ from client import Config, NoteNews
 def check_send():
     urls = ["https://canaltech.com.br/ultimas/", "https://www.tecmundo.com.br/tecnologia", "https://olhardigital.com.br/editorias/noticias/feed"]
     website = random.choice(urls)
-    html = requests.get(urls).content
+    html = requests.get(website).content
     soup = bs(html, "html.parser")
     if website == "https://www.tecmundo.com.br/tecnologia/":
         author = "TecMundo"
