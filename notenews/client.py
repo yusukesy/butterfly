@@ -35,7 +35,6 @@ class NoteBot(Client):
             for p in path:
                 if p.endswith(".py"):
                     arq = p.replace(".py", "")
-                    importlib.import_module("plugins.dailyme")
                     importlib.import_module("plugins." + arq)
         except Exception as e:
             print(str(e))
