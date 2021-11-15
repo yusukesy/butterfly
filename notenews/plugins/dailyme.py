@@ -51,13 +51,7 @@ def check_send():
                 print(str(e))
         else:
             print(f"FEED Verificado: {link}")
-            k = ""
-            for bit in db.get_all():
-                k += f"{bit.link}\n"
-            NoteNews.send_message(-1001165341477, k)
-            oi = [i.link for i in db.get_all()]
-            NoteNews.send_message(-1001165341477, oi)
-                
+            
 scheduler = BackgroundScheduler()
 scheduler.add_job(check_send, "interval", seconds=7, max_instances=Config.MAX_INSTANCES)
 scheduler.start()
