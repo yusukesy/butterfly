@@ -26,7 +26,7 @@ def check_send():
             return
         if link != db.get_link(website).link:
             message = f"""
-[\u200c]({link})🌐 | via **Adoro Cinema:** **[{title}]({link})**
+[\u200c]({link})🌐 | via **{author}:** **[{title}]({link})**
 
 ▫️ | Mantido por: @NoteZV
 """
