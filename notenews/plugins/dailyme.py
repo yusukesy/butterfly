@@ -53,8 +53,8 @@ def check_send():
             print(f"FEED Verificado: {link}")
             k = ""
             for bit in db.get_all():
-                k += f"{bit}\n"
-            print("HEREEEEEE"+k)
+                k += f"{bit.link}\n"
+            print("HEREEEEEE: "+k)
                 
 scheduler = BackgroundScheduler()
 scheduler.add_job(check_send, "interval", seconds=1, max_instances=Config.MAX_INSTANCES)
