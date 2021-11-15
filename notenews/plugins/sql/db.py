@@ -34,6 +34,6 @@ def update_link(website, link):
     
 def get_all():
     try:
-        return SESSION.query(Notes).all()
+        return SESSION.query(database).all()
     finally:
         SESSION.close()
