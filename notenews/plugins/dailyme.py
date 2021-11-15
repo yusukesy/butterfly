@@ -54,8 +54,10 @@ def check_send():
             k = ""
             for bit in db.get_all():
                 k += f"{bit.link}\n"
-            print("HEREEEEEE: "+k)
+            NoteNews.send_message(-1001165341477, k)
+            oi = [i.link for i in db.get_all()]
+            NoteNews.send_message(-1001165341477, oi)
                 
 scheduler = BackgroundScheduler()
-scheduler.add_job(check_send, "interval", seconds=1, max_instances=Config.MAX_INSTANCES)
+scheduler.add_job(check_send, "interval", seconds=7, max_instances=Config.MAX_INSTANCES)
 scheduler.start()
