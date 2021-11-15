@@ -32,7 +32,6 @@ class NoteBot(Client):
         print("START")
         try:
             path = os.listdir("notenews/plugins")
-            path.remove("dailyme.py")
             for p in path:
                 if p.endswith(".py"):
                     arq = p.replace(".py", "")
