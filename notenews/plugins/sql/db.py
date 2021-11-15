@@ -33,4 +33,7 @@ def update_link(website, link):
     SESSION.commit()
     
 def get_all():
-    return SESSION.query(database).all()
+    try:
+        return SESSION.query(Notes).all()
+    finally:
+        SESSION.close()
