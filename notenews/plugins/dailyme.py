@@ -23,7 +23,7 @@ def check_send():
         link = str(soup.find("div", attrs={"class": "tec--list__item"}).div.a.get("href"))
     if website == "https://canaltech.com.br/ultimas/":
         link_ = str(soup.section.a.get("href"))
-        if not (link_.startswith("/smartphone") or link_.startswith("/tecnologia") or link_.startswith("/tablet") or link_.startswith("/windows") or link_.startswith("/fone-de-ouvido") or link_.startswith("/casa-conectada") or link_.startswith("/apps") or link_.startswith("/internet") or link_.startswith("/notebook") or link_.startswith("/games")):
+        if not (link_.startswith("/smartphone") or link_.startswith("/tecnologia") or link_.startswith("/tablet") or link_.startswith("/windows") or link_.startswith("/fone-de-ouvido") or link_.startswith("/casa-conectada") or link_.startswith("/apps") or link_.startswith("/internet") or link_.startswith("/notebook") or link_.startswith("/games") or link_.startswith("/software")):
             link = None
             return
         author = "CanalTech"
