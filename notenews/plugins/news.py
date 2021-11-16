@@ -1,6 +1,6 @@
 import os
 import random
-from time import sleep, time
+from time import sleep
 
 import feedparser
 from .sql import db
