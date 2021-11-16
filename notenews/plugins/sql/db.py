@@ -12,6 +12,15 @@ class database(BASE):
 
 database.__table__.create(checkfirst=True)
 
+class butterfly(BASE):
+    __tablename__ = "butterfly"
+    link = Column(String, primary_key=True)
+    
+    def __init__(self, website, link):
+        self.link = link
+
+butterfly.__table__.create(checkfirst=True)
+
 def get_link(website):
     try:
         return SESSION.query(database).get(website)
@@ -31,3 +40,10 @@ def update_link(website, link):
         )
     SESSION.add(adder)
     SESSION.commit()
+    
+def get_all():
+    try:
+        return SESSION.query(butterfly).all()
+    finally:
+        SESSION.close()
+
