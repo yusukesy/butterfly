@@ -1,32 +1,39 @@
 {
-  "name": "NoteNews",
-  "description": "NewsBot for Telegram.",
-	"stack": "container",
-  "repository": "https://github.com/ibhabhathane/PhawulaX",
-  "keywords": [
-  "python", 
-  "chatbot", 
-  "telegrambot"
-  ],
-  "website": "https://github.com/ibhabhathane/PhawulaX",
-  "success_url": "https://t.me/tlmusicdownloader_bot",
-  "env": {
-    "API_ID": {
-      "description": "Make a bot at BotFather http://telegram.dog/BotFather and get the token of your bot",
-      "required": true
-},
-    "API_HASH": {
-      "description": "Make a bot at BotFather http://telegram.dog/BotFather and get the token of your bot",
-      "required": true
-},
-    "BOT_TOKEN": {
-      "description": "Make a bot at BotFather http://telegram.dog/BotFather and get the token of your bot",
-      "required": true
-    }
-  }
-  "buildpacks": [
-      {
-          "url": "heroku/python"
-      },
-  ],
+	"env": {
+		"API_ID": {
+			"description": "Get this value from https://my.telegram.org",
+			"required": true
+		},
+		"API_HASH": {
+			"description": "Get this value from https://my.telegram.org",
+			"required": true
+		},
+		"BOT_TOKEN": {
+			"description": "Get this from https://t.me/botfather and enable Inline Mode. (ADD YOUR BOT IN LOG CHANNEL)",
+			"required": true
+		},
+		"DATABASE_URL": {
+		    "description": "URL da Database? kkk.",
+		    "required": true
+		},
+		"FEED_URLS": {
+		    "description": "URL Feed. Kek.",
+		    "required": true
+		},
+		"LOG_CHANNEL": {
+		    "description": "Kek.",
+		    "required": true
+		},
+		"CHECK_INTERVAL": {
+		    "description": "Tempo de checagem do feed.",
+		    "required": true
+		},
+		"MAX_INSTANCES": {
+		    "description": "Nah.",
+		    "required": true
+		}
+	},
+	"buildpacks": [
+		{ "url": "heroku/python" }
+	]
 }
