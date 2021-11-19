@@ -22,16 +22,18 @@ def check_send():
         title = str(soup.find("div", attrs={"class": "tec--list__item"}).div.a.string)
         link = str(soup.find("div", attrs={"class": "tec--list__item"}).div.a.get("href"))
     if website == "https://canaltech.com.br/ultimas/":
-        link_ = str(soup.section.a.get("href"))
-        if not (link_.startswith("/smartphone") or link_.startswith("/tecnologia") or link_.startswith("/tablet") or link_.startswith("/windows") or link_.startswith("/fone-de-ouvido") or link_.startswith("/casa-conectada") or link_.startswith("/apps") or link_.startswith("/internet") or link_.startswith("/notebook") or link_.startswith("/games") or link_.startswith("/software")):
+        author = "CanalTech"
+        feed = feedparser.parse(website)
+        entry = feed.entries[0]
+        title = entry.title
+        link_ = entry.link
+        if not (link_.startswith("https://canatech.com.br/smartphone") or link_.startswith("https://canatech.com.br/tecnologia") or link_.startswith("https://canatech.com.br/tablet") or link_.startswith("https://canatech.com.br/windows") or link_.startswith("https://canatech.com.br/fone-de-ouvido") or link_.startswith("https://canatech.com.br/casa-conectada") or link_.startswith("https://canatech.com.br/internet") or link_.startswith("https://canatech.com.br/notebook") or link_.startswith("https://canatech.com.br/software")):
             link = None
             return
-        author = "CanalTech"
-        link = "https://canaltech.com.br" + str(soup.section.a.get("href"))
-        title = str(soup.section.a.h3.string)
+        link = link_
     if website == "https://olhardigital.com.br/editorias/noticias/feed/":
         author = "Olhar Digital"
-        feed = feedparser.parse("https://olhardigital.com.br/editorias/noticias/feed/")
+        feed = feedparser.parse(website)
         entry = feed.entries[0]
         link = entry.link
         title = entry.title
