@@ -14,7 +14,7 @@ from client import Config, NoteNews
 
 def check_send():
     websites = ["http://feeds.feedburner.com/gizmocn", "http://feeds.feedburner.com/feedburner/canaltech", "https://www.tecmundo.com.br/tecnologia/"]
-    website = "http://feeds.feedburner.com/feedburner/canaltech"#random.choice(websites)
+    website = random.choice(websites)
     html = requests.get(website).content
     soup = bs(html, "html.parser")
     if website == "https://www.tecmundo.com.br/tecnologia/":
@@ -27,7 +27,6 @@ def check_send():
         entry = feed.entries[0]
         title = entry.title
         link_ = entry.link
-        print(link_)
         if not (link_.startswith("https://canatech.com.br/smartphone") or link_.startswith("https://canatech.com.br/tecnologia") or link_.startswith("https://canatech.com.br/tablet") or link_.startswith("https://canatech.com.br/windows") or link_.startswith("https://canatech.com.br/fone-de-ouvido") or link_.startswith("https://canatech.com.br/casa-conectada") or link_.startswith("https://canatech.com.br/internet") or link_.startswith("https://canatech.com.br/notebook") or link_.startswith("https://canatech.com.br/software")):
             link = None
             return
@@ -60,5 +59,5 @@ def check_send():
             print(f"FEED Verificado: {link}")
             
 scheduler = BackgroundScheduler()
-scheduler.add_job(check_send, "interval", seconds=5, max_instances=Config.MAX_INSTANCES)
+scheduler.add_job(check_send, "interval", seconds=100, max_instances=Config.MAX_INSTANCES)
 scheduler.start()
