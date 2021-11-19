@@ -16,7 +16,7 @@ cmd = partial(filters.command, prefixes=list("/"))
 import feedparser
 @NoteNews.on_message(cmd("kek"))
 async def kek(_, message: Message):
-    feed = feedparser.parse("https://www.gizmochina.com/feed")
+    feed = feedparser.parse("http://feeds.feedburner.com/gizmocn")
     entry = feed.entries[0]
     link = entry.link
     title = entry.title
