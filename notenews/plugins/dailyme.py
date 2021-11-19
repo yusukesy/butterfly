@@ -13,7 +13,7 @@ from client import Config, NoteNews
 
 
 def check_send():
-    websites = ["http://feeds.feedburner.com/gizmocn", "http://feeds.feedburner.com/feedburner/canaltech", "https://www.tecmundo.com.br/tecnologia/", "https://olhardigital.com.br/editorias/noticias/feed/"]
+    websites = ["http://feeds.feedburner.com/gizmocn", "http://feeds.feedburner.com/feedburner/canaltech", "https://www.tecmundo.com.br/tecnologia/"]
     website = random.choice(websites)
     html = requests.get(website).content
     soup = bs(html, "html.parser")
@@ -33,12 +33,6 @@ def check_send():
         link = link_
     if website == "http://feeds.feedburner.com/gizmocn":
         author = "GizmoChina"
-        feed = feedparser.parse(website)
-        entry = feed.entries[0]
-        link = entry.link
-        title = entry.title
-    if website == "https://olhardigital.com.br/editorias/noticias/feed/":
-        author = "Olhar Digital"
         feed = feedparser.parse(website)
         entry = feed.entries[0]
         link = entry.link
