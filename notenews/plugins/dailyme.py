@@ -59,5 +59,5 @@ def check_send():
             print(f"FEED Verificado: {link}")
             
 scheduler = BackgroundScheduler()
-scheduler.add_job(check_send, "interval", seconds=5, max_instances=Config.MAX_INSTANCES)
+scheduler.add_job(check_send, "interval", seconds=100, max_instances=Config.MAX_INSTANCES)
 scheduler.start()
