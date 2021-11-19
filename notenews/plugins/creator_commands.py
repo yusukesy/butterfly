@@ -12,6 +12,16 @@ import time
 
 cmd = partial(filters.command, prefixes=list("/"))
 
+#
+import feedparser
+@NoteNews.on_message(cmd("kek"))
+async def kek(_, message: Message):
+    feed = feedparser.parse("https://www.gizmochina.com/feed/")
+    entry = feed.entries[0]
+    link = entry.link
+    title = entry.title
+    await message.reply(f"{title}\n\n{link}")
+#
 @NoteNews.on_message(cmd("add") & filter_owner)
 async def add_feed(_, message: Message):
     heroku_conn = heroku3.from_key(Config.HU_KEY)
