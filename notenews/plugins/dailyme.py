@@ -27,6 +27,7 @@ def check_send():
         entry = feed.entries[0]
         title = entry.title
         link_ = entry.link
+        print(link_)
         if not (link_.startswith("https://canaltech.com.br/smartphone") or link_.startswith("https://canaltech.com.br/tecnologia") or link_.startswith("https://canaltech.com.br/tablet") or link_.startswith("https://canaltech.com.br/windows") or link_.startswith("https://canaltech.com.br/fone-de-ouvido") or link_.startswith("https://canaltech.com.br/casa-conectada") or link_.startswith("https://canaltech.com.br/internet") or link_.startswith("https://canaltech.com.br/notebook") or link_.startswith("https://canaltech.com.br/software")):
             link = None
             return
@@ -59,5 +60,5 @@ def check_send():
             print(f"FEED Verificado: {link}")
             
 scheduler = BackgroundScheduler()
-scheduler.add_job(check_send, "interval", seconds=100, max_instances=Config.MAX_INSTANCES)
+scheduler.add_job(check_send, "interval", seconds=5, max_instances=Config.MAX_INSTANCES)
 scheduler.start()
