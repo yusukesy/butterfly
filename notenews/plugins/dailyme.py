@@ -14,7 +14,7 @@ from client import Config, NoteNews
 
 def check_send():
     websites = ["http://feeds.feedburner.com/gizmocn", "http://feeds.feedburner.com/feedburner/canaltech", "https://www.tecmundo.com.br/tecnologia/"]
-    website = random.choice(websites)
+    website = "http://feeds.feedburner.com/feedburner/canaltech"#random.choice(websites)
     html = requests.get(website).content
     soup = bs(html, "html.parser")
     if website == "https://www.tecmundo.com.br/tecnologia/":
@@ -59,5 +59,5 @@ def check_send():
             print(f"FEED Verificado: {link}")
             
 scheduler = BackgroundScheduler()
-scheduler.add_job(check_send, "interval", seconds=60, max_instances=Config.MAX_INSTANCES)
+scheduler.add_job(check_send, "interval", seconds=5, max_instances=Config.MAX_INSTANCES)
 scheduler.start()
