@@ -27,12 +27,10 @@ def check_send():
         entry = feed.entries[0]
         title = entry.title
         link_ = entry.link
-        if not (link_.startswith("https://canaltech.com.br/smartphone") or link_.startswith("https://canaltech.com.br/tecnologia") or link_.startswith("https://canaltech.com.br/tablet") or link_.startswith("https://canaltech.com.br/windows") or link_.startswith("https://canaltech.com.br/fone-de-ouvido") or link_.startswith("https://canaltech.com.br/casa-conectada") or link_.startswith("https://canaltech.com.br/internet") or link_.startswith("https://canaltech.com.br/notebook") or link_.startswith("https://canaltech.com.br/software") or link_.startswith("https://canaltech.com.br/apps")):
+        if not (link_.startswith("https://canaltech.com.br/smartphone") or link_.startswith("https://canaltech.com.br/tecnologia") or link_.startswith("https://canaltech.com.br/tablet") or link_.startswith("https://canaltech.com.br/windows") or link_.startswith("https://canaltech.com.br/fone-de-ouvido") or link_.startswith("https://canaltech.com.br/casa-conectada") or link_.startswith("https://canaltech.com.br/internet") or link_.startswith("https://canaltech.com.br/notebook") or link_.startswith("https://canaltech.com.br/software")):
             link = None
-            print("AAAAAAAAAAA")
             return
         link = link_
-        print("BBBBBBBBBB")
     if website == "http://feeds.feedburner.com/gizmocn":
         author = "GizmoChina"
         feed = feedparser.parse(website)
