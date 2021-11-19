@@ -13,7 +13,7 @@ from client import Config, NoteNews
 
 
 def check_send():
-    websites = ["https://canaltech.com.br/ultimas/", "https://www.tecmundo.com.br/tecnologia/", "https://olhardigital.com.br/editorias/noticias/feed/"]
+    websites = ["http://feeds.feedburner.com/feedburner/canaltech", "https://www.tecmundo.com.br/tecnologia/", "https://olhardigital.com.br/editorias/noticias/feed/"]
     website = random.choice(websites)
     html = requests.get(website).content
     soup = bs(html, "html.parser")
@@ -21,7 +21,7 @@ def check_send():
         author = "TecMundo"
         title = str(soup.find("div", attrs={"class": "tec--list__item"}).div.a.string)
         link = str(soup.find("div", attrs={"class": "tec--list__item"}).div.a.get("href"))
-    if website == "https://canaltech.com.br/ultimas/":
+    if website == "http://feeds.feedburner.com/feedburner/canaltech":
         author = "CanalTech"
         feed = feedparser.parse(website)
         entry = feed.entries[0]
