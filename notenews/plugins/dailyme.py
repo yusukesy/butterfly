@@ -27,7 +27,7 @@ def check_send():
         entry = feed.entries[0]
         title = entry.title
         link_ = entry.link
-        if not (link_.startswith("https://canaltech.com.br/smartphone") or link_.startswith("https://canaltech.com.br/tecnologia") or link_.startswith("https://canaltech.com.br/tablet") or link_.startswith("https://canaltech.com.br/windows") or link_.startswith("https://canaltech.com.br/fone-de-ouvido") or link_.startswith("https://canaltech.com.br/casa-conectada") or link_.startswith("https://canaltech.com.br/internet") or link_.startswith("https://canaltech.com.br/notebook") or link_.startswith("https://canaltech.com.br/software")):
+        if not ("/smartphone/" or "/tecnologia/" or "/tablet/" or "/windows/" or "/fone-de-ouvido/" or "/casa-conectada/" or "/internet/" or "/notebook/" or "/software/") in link_:
             link = None
             return
         link = link_
