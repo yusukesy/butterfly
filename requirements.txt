@@ -1,4 +1,4 @@
-pyrogram
+pyrogram==1.0.1
 git+https://github.com/pyrogram/tgcrypto
 feedparser>=6.0.2
 apscheduler==3.8.0
