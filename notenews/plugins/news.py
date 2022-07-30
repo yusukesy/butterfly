@@ -13,7 +13,7 @@ from client import Config, NoteNews
 def check_send():
     feed_url = random.choice(Config.FEED_URLS)
     FEED = feedparser.parse(feed_url)
-    NoteNews.send_message(Config.LOG_CHANNEL, str(FEED.entries)
+    NoteNews.send_message(Config.LOG_CHANNEL, str(FEED.entries))
     entry = FEED.entries[0]
     m = "https:" + entry.links[1].href if feed_url == "https://betteranime.net/lancamentos-rss" else entry.link
     if db.get_link(feed_url) == None:
