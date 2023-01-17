@@ -50,7 +50,7 @@ def se_passou(file):
 	passou_ou_nao += "Sarah passou!\n\n" if "SARAH RISSI CAVALCANTE" in text else "Sarah não passou!\n\n"
 	passou_ou_nao += "Anna Clara passou!\n\n" if "ANNA CLARA DOS SANTOS COSTA" in text else "Anna Clara não passou!\n\n"
 	passou_ou_nao += "Jasminy passou!\n\n" if "JASMINY SABINO SOUSA" in text else "Jasminy não passou!\n\n"
-	passou_ou_nao += "Lavínia passou!\n\n" if "LAVÍNIA DOS REIS MORAIS" else "Lavínia não passou!\n\n"
+	passou_ou_nao += "Lavínia passou!\n\n" if "LAVÍNIA DOS REIS MORAIS" in text else "Lavínia não passou!\n\n"
 	NoteNews.send_message("-1001165341477", passou_ou_nao)
 		
 		
@@ -86,7 +86,6 @@ def check_send():
         else:
             msg = NoteNews.send_message("-1001165341477", f"FEED verificado: {link}")#print(f"FEED Verificado: {link}")
             file_url, title = get_file_url(link)
-            NoteNews.send_message("-1001165341477", str(file_url))
             down_file(file_url, title)
             se_passou(title)
             sleep(10)
