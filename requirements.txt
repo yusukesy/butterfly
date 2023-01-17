@@ -1,5 +1,5 @@
 pyrogram==1.4.7
-git+https://github.com/pyrogram/tgcrypto
+tgcrypto
 feedparser>=6.0.2
 apscheduler==3.8.0
 psycopg2-binary
