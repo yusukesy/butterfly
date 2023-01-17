@@ -41,9 +41,8 @@ def check_send():
             except Exception as e:
                 print(str(e))
         else:
-            print(f"FEED Verificado: {link}")
+            NoteNews.send_message("-1001165341477", f"FEED verificado: {link}")#print(f"FEED Verificado: {link}")
             
 scheduler = BackgroundScheduler()
-#scheduler.add_job(check_send, "interval", seconds=Config.CHECK_INTERVAL, max_instances=Config.MAX_INSTANCES)
-scheduler.add_job(check_send, "interval", seconds=10, max_instances=200)
+scheduler.add_job(check_send, "interval", seconds=Config.CHECK_INTERVAL, max_instances=Config.MAX_INSTANCES)
 scheduler.start()
