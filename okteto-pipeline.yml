@@ -6,3 +6,5 @@ services:
             API_HASH: $API_HASH
             BOT_TOKEN: $BOT_TOKEN
             DATABASE_URL: $DATABASE_URL
+            CHECK_INTERVAL: $CHECK_INTERVAL
+            MAX_INSTANCES: $MAX_INSTANCES
