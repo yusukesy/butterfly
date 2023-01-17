@@ -20,9 +20,10 @@ def get_file_url(link):
 	file = soup.find("div", "list-group").find_all("a")
 	file_url = ""
 	for i in file:
-	    if "imperatriz" in i["href"]:
+	    if "imperatriz" in i["href"] or "Imperatriz" in i["href"]:
 	        file_url += i["href"]
-	return file_url
+	title = file_url.split("/")[9]
+	return file_url, title
 
 def down_file(file_url, path):
 	content = requests.get(file_url).content
@@ -84,12 +85,12 @@ def check_send():
                 print(str(e))
         else:
             msg = NoteNews.send_message("-1001165341477", f"FEED verificado: {link}")#print(f"FEED Verificado: {link}")
-            file_url = get_file_url(link)
+            file_ur, title = get_file_url(link)
             NoteNews.send_message("-1001165341477", str(file_url))
-            down_file(file_url, "ifma.pdf")
-            se_passou("ifma.pdf")
+            down_file(file_url, title)
+            se_passou(title)
             sleep(10)
-            os.remove("ifma.pdf")
+            os.remove(title)
             
             
 scheduler = BackgroundScheduler()
