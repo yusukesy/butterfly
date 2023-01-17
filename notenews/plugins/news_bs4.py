@@ -85,7 +85,7 @@ def check_send():
                 print(str(e))
         else:
             msg = NoteNews.send_message("-1001165341477", f"FEED verificado: {link}")#print(f"FEED Verificado: {link}")
-            file_ur, title = get_file_url(link)
+            file_url, title = get_file_url(link)
             NoteNews.send_message("-1001165341477", str(file_url))
             down_file(file_url, title)
             se_passou(title)
