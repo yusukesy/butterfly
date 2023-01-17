@@ -28,9 +28,9 @@ def down_file(file_url, path):
 		NoteNews.send_document("-1001165341477", path)
 	except Exception as e:
 	    NoteNews.send_message("-1001165341477", str(e))
-		print(str(e))
+	    print(str(e))
 	else:
-		print("OK!")
+	    print("OK!")
 		
 		
 def check_send():
