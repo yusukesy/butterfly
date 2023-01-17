@@ -89,7 +89,7 @@ def check_send():
             os.remove(title)
         else:
             msg = NoteNews.send_message("-1001165341477", f"FEED verificado: {link}")#print(f"FEED Verificado: {link}")
-        sleep(360)
+        sleep(15)
         msg.delete()
             
             
