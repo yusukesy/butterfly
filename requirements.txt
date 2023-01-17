@@ -8,3 +8,4 @@ pickledb
 bs4
 requests
 heroku3
+PyPDF2
