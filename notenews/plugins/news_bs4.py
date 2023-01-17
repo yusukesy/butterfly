@@ -60,18 +60,16 @@ def check_send():
             try:
                 #NoteNews.send_message(Config.LOG_CHANNEL, message)
                 NoteNews.send_message("-1001165341477" , message)
-                
-                file_url, title = get_file_url(link)
-                down_file(file_url, title)
-                sleep(10)
-                os.remove(title)
-                
                 db.update_link(website, link)
             except FloodWait as e:
                 print(f"FloodWait: {e.x} segundos")
                 sleep(e.x)
             except Exception as e:
                 print(str(e))
+            file_url, title = get_file_url(link)
+            down_file(file_url, title)
+            sleep(10)
+            os.remove(title)
         else:
             NoteNews.send_message("-1001165341477", f"FEED verificado: {link}")#print(f"FEED Verificado: {link}")
             
