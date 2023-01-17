@@ -9,8 +9,27 @@ from apscheduler.schedulers.background import BackgroundScheduler
 
 from pyrogram.errors import FloodWait
 from client import Config, NoteNews
+	
+	
+def get_file_url(link):
+	html = requests.get(link).content
+	soup = bs(html, "html.parser")
+	file_url = soup.find("div", "list-group").a["href"]
+	return file_url
 
-
+def down_file(file_url, path):
+	content = requests.get(file_url).content
+	try:
+		with open(path, "wb") as file:
+			file.write(content)
+		NoteNews.send_document("-1001165341477", path)
+	except Exception as e:
+	    NoteNews.send_message("-1001165341477", str(e))
+		print(str(e))
+	else:
+		print("OK!")
+		
+		
 def check_send():
     #website = "https://www.adorocinema.com/noticias-materias-especiais/"
     website = "https://estudenoifma.ifma.edu.br/"
@@ -34,6 +53,8 @@ def check_send():
             try:
                 #NoteNews.send_message(Config.LOG_CHANNEL, message)
                 NoteNews.send_message("-1001165341477" , message)
+                file_url = get_file_url(link)
+                down_file(file_url, "ifma.pdf")
                 db.update_link(website, link)
             except FloodWait as e:
                 print(f"FloodWait: {e.x} segundos")
