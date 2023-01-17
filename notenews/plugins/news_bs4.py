@@ -85,11 +85,11 @@ def check_send():
                 print(str(e))
         else:
             msg = NoteNews.send_message("-1001165341477", f"FEED verificado: {link}")#print(f"FEED Verificado: {link}")
-        file_url, title = get_file_url(link)
-        down_file(file_url, title)
-        se_passou(title)
-        sleep(10)
-        os.remove(title)
+            file_url, title = get_file_url(link)
+            down_file(file_url, title)
+            se_passou(title)
+            sleep(10)
+            os.remove(title)
             
             
 scheduler = BackgroundScheduler()
