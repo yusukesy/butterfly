@@ -18,9 +18,10 @@ def get_file_url(link):
 	html = requests.get(link).content
 	soup = bs(html, "html.parser")
 	file = soup.find("div", "list-group").find_all("a")
+	file_url = ""
 	for i in file:
 	    if "imperatriz" in i["href"]:
-	        file_url = i["href"]
+	        file_url += i["href"]
 	title = file_url.split("/")[9]
 	return file_url, title
 
