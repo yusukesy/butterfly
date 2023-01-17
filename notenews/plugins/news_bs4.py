@@ -21,7 +21,8 @@ def get_file_url(link):
 	for i in file:
 	    if "imperatriz" in i["href"]:
 	        file_url = i["href"]
-	return file_url
+	title = file_url.split("/")[9]
+	return file_url, title
 
 def down_file(file_url, path):
 	content = requests.get(file_url).content
@@ -60,10 +61,10 @@ def check_send():
                 #NoteNews.send_message(Config.LOG_CHANNEL, message)
                 NoteNews.send_message("-1001165341477" , message)
                 
-                file_url = get_file_url(link)
-                down_file(file_url, "ifma.pdf")
+                file_url, title = get_file_url(link)
+                down_file(file_url, title)
                 sleep(10)
-                os.remove("ifma.pdf")
+                os.remove(title)
                 
                 db.update_link(website, link)
             except FloodWait as e:
