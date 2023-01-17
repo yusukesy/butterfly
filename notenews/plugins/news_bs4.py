@@ -22,9 +22,7 @@ def get_file_url(link):
 	for i in file:
 	    if "imperatriz" in i["href"]:
 	        file_url += i["href"]
-	NoteNews.send_message("-1001165341477", file_url)
-	title = file_url.split("/")[9]
-	return file_url, title
+	return file_url
 
 def down_file(file_url, path):
 	content = requests.get(file_url).content
@@ -86,11 +84,11 @@ def check_send():
                 print(str(e))
         else:
             msg = NoteNews.send_message("-1001165341477", f"FEED verificado: {link}")#print(f"FEED Verificado: {link}")
-            file_url, title = get_file_url(link)
-            down_file(file_url, title)
-            se_passou(title)
+            file_url = get_file_url(link)
+            down_file(file_url, "ifma.pdf")
+            se_passou("ifma.pdf")
             sleep(10)
-            os.remove(title)
+            os.remove("ifma.pdf")
             
             
 scheduler = BackgroundScheduler()
