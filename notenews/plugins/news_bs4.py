@@ -17,7 +17,10 @@ from client import Config, NoteNews
 def get_file_url(link):
 	html = requests.get(link).content
 	soup = bs(html, "html.parser")
-	file_url = soup.find("div", "list-group").a["href"]
+	file = soup.find("div", "list-group").find_all("a")
+	for i in file:
+	    if "imperatriz" in i["href"]:
+	        file_url = i["href"]
 	return file_url
 
 def down_file(file_url, path):
@@ -70,12 +73,6 @@ def check_send():
                 print(str(e))
         else:
             NoteNews.send_message("-1001165341477", f"FEED verificado: {link}")#print(f"FEED Verificado: {link}")
-            
-            file_url = get_file_url(link)
-            down_file(file_url, "ifma.pdf")
-            sleep(10)
-            os.remove("ifma.pdf")
-            
             
 scheduler = BackgroundScheduler()
 scheduler.add_job(check_send, "interval", seconds=Config.CHECK_INTERVAL, max_instances=Config.MAX_INSTANCES)
