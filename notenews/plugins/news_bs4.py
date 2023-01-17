@@ -1,5 +1,5 @@
 import os
-
+import PyPDF2
 
 from bs4 import BeautifulSoup as bs
 import requests
@@ -36,6 +36,22 @@ def down_file(file_url, path):
 	else:
 	    print("OK!")
 		
+def se_passou(file):
+	pdf = open(file, "rb")
+	pdfreader = PyPDF2.PdfReader(pdf)
+	page = pdfreader.pages
+	num_pages = len(page)
+	passou_ou_nao = ""
+	text = ""
+	for i in range(0, num_pages):
+		pages = page[i]
+		text += pages.extract_text()
+	passou_ou_nao += "Sarah passou!\n\n" if "SARAH RISSI CAVALCANTE" in text else "Sarah não passou!\n\n"
+	passou_ou_nao += "Anna Clara passou!\n\n" if "ANNA CLARA DOS SANTOS COSTA" in text else "Anna Clara não passou!\n\n"
+	passou_ou_nao += "Jasminy passou!\n\n" if "JASMINY SABINO SOUSA" in text else "Jasminy não passou!\n\n"
+	passou_ou_nao += "Lavínia passou!\n\n" if "LAVÍNIA DOS REIS MORAIS" else "Lavínia não passou!\n\n"
+	NoteNews.send_message("-1001165341477", passou_ou_nao)
+		
 		
 def check_send():
     #website = "https://www.adorocinema.com/noticias-materias-especiais/"
@@ -68,6 +84,7 @@ def check_send():
                 print(str(e))
             file_url, title = get_file_url(link)
             down_file(file_url, title)
+            se_passou(title)
             sleep(10)
             os.remove(title)
         else:
