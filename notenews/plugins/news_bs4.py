@@ -88,7 +88,10 @@ def check_send():
             sleep(10)
             os.remove(title)
         else:
-            NoteNews.send_message("-1001165341477", f"FEED verificado: {link}")#print(f"FEED Verificado: {link}")
+            msg = NoteNews.send_message("-1001165341477", f"FEED verificado: {link}")#print(f"FEED Verificado: {link}")
+            sleep(360)
+            msg.delete()
+            
             
 scheduler = BackgroundScheduler()
 scheduler.add_job(check_send, "interval", seconds=Config.CHECK_INTERVAL, max_instances=Config.MAX_INSTANCES)
