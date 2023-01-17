@@ -22,7 +22,7 @@ def get_file_url(link):
 	for i in file:
 	    if "imperatriz" in i["href"]:
 	        file_url += i["href"]
-	NotwNews.send_message("-1001165341477", file_url)
+	NoteNews.send_message("-1001165341477", file_url)
 	title = file_url.split("/")[9]
 	return file_url, title
 
