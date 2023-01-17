@@ -1,3 +1,6 @@
+import os
+
+
 from bs4 import BeautifulSoup as bs
 import requests
 
@@ -53,8 +56,12 @@ def check_send():
             try:
                 #NoteNews.send_message(Config.LOG_CHANNEL, message)
                 NoteNews.send_message("-1001165341477" , message)
+                
                 file_url = get_file_url(link)
                 down_file(file_url, "ifma.pdf")
+                sleep(10)
+                os.remove("ifma.pdf")
+                
                 db.update_link(website, link)
             except FloodWait as e:
                 print(f"FloodWait: {e.x} segundos")
@@ -63,6 +70,12 @@ def check_send():
                 print(str(e))
         else:
             NoteNews.send_message("-1001165341477", f"FEED verificado: {link}")#print(f"FEED Verificado: {link}")
+            
+            file_url = get_file_url(link)
+            down_file(file_url, "ifma.pdf")
+            sleep(10)
+            os.remove("ifma.pdf")
+            
             
 scheduler = BackgroundScheduler()
 scheduler.add_job(check_send, "interval", seconds=Config.CHECK_INTERVAL, max_instances=Config.MAX_INSTANCES)
