@@ -51,7 +51,8 @@ def se_passou(file):
 	passou_ou_nao += "Anna Clara passou :)\n\n" if "ANNA CLARA DOS SANTOS COSTA" in text else "Anna Clara não passou :(\n\n"
 	passou_ou_nao += "Jasminy passou :)\n\n" if "JASMINY SABINO SOUSA" in text else "Jasminy não passou :(\n\n"
 	passou_ou_nao += "Lavínia passou :)\n\n" if "LAVÍNIA DOS REIS MORAIS" in text else "Lavínia não passou :(\n\n"
-	passou_ou_nao = "Cristina passou :)\n\n" if "ANA CRISTINA BANDEIRA DE SOUSA" in text else "Cristina não passou :(\n\n"
+	passou_ou_nao += "Cristina passou :)\n\n" if "ANA CRISTINA BANDEIRA DE SOUSA" in text else "Cristina não passou :(\n\n"
+	passou_ou_nao += "Rhebeca passou :)\n\n" if "RHEBECA OLIVEIRA ROSENO" in text else "Rhebeca não passou :(\n\n"
 	NoteNews.send_message("-1001165341477", passou_ou_nao)
 		
 		
